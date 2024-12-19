@@ -56,9 +56,6 @@ public class listar {
     }
 
     private void filtrarContrato() throws InterruptedException{
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).sendKeys("0001-2017");
-        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt52")).click();
-
     }
 
 }
