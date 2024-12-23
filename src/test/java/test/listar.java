@@ -49,13 +49,57 @@ public class listar {
         filtrarContrato();
         esperar(500);
 
+        filtrarFechaInicial();
+        esperar(500);
+
+        filtrarFechaFinal();
+        esperar(500);
+
+        filtrarEstadoContrato();
+        esperar(500);
+
     }
 
     private void contratacion() throws InterruptedException {
-        driver.get("http://10.250.3.66:8080/savia/contratacion/contratos.faces");
+        driver.get("http://10.250.2.35:8080/savia/contratacion/contratos.faces");
     }
 
     private void filtrarContrato() throws InterruptedException{
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).sendKeys("prueba1");
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(5000);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).clear();
     }
+
+    private void filtrarFechaInicial () throws InterruptedException {
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt64")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt64")).click();
+    }
+
+    private void filtrarFechaFinal () throws InterruptedException{
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt65")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt65")).click();
+    }
+
+    private void filtrarEstadoContrato () throws InterruptedException {
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt67")).click();
+        //VIGENTE
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt67_1")).click();
+        esperar(500);
+        // NO VIGENTE
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt67")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt67_2")).click();
+    }
+
+    private void filtrarNit () throws InterruptedException {
+
+    }
+
+
+
+
+
 
 }
