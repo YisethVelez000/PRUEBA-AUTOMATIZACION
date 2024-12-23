@@ -58,6 +58,12 @@ public class listar {
         filtrarEstadoContrato();
         esperar(500);
 
+        filtrarNit();
+        esperar(500);
+
+        filtrarNombre();
+        esperar(500);
+
     }
 
     private void contratacion() throws InterruptedException {
@@ -91,15 +97,28 @@ public class listar {
         // NO VIGENTE
         driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt67")).click();
         driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt67_2")).click();
+        esperar(500);
+        //Ninguno de los anteriores
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt67")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt67_0")).click();
+
+
     }
 
     private void filtrarNit () throws InterruptedException {
-
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).sendKeys("800082394");
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).clear();
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
     }
 
-
-
-
-
-
+    private void filtrarNombre () throws InterruptedException {
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).sendKeys("prueba1");
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(500);
+    }
+    private void modalidadContrato () throws InterruptedException {
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+    }
 }
