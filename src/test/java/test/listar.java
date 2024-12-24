@@ -64,10 +64,25 @@ public class listar {
         filtrarNombre();
         esperar(500);
 
+        modalidadContrato();
+        esperar(500);
+
+        filtrarCodigoHabilitacion();
+        esperar(500);
+
+        filtrarNombreSede();
+        esperar(500);
+
+        filtrarFechaHoraCrea();
+        esperar(500);
+
+        driver.quit();
+
     }
 
     private void contratacion() throws InterruptedException {
         driver.get("http://10.250.2.35:8080/savia/contratacion/contratos.faces");
+        driver.manage().window().maximize();
     }
 
     private void filtrarContrato() throws InterruptedException{
@@ -108,17 +123,76 @@ public class listar {
     private void filtrarNit () throws InterruptedException {
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).sendKeys("800082394");
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
-        esperar(500);
+        esperar(800);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).clear();
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(800);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt70")).click();
+        esperar(800);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt70")).click();
     }
 
     private void filtrarNombre () throws InterruptedException {
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).sendKeys("prueba1");
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(500);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).clear();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt72")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt72")).click();
     }
+
     private void modalidadContrato () throws InterruptedException {
         driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+        // CAPITA
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt75_1")).click();
+        esperar(500);
+        // EVENTO
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt75_2")).click();
+        esperar(500);
+        // PGP
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt75_3")).click();
+        esperar(500);
+        // PAQUETES
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt75_4")).click();
+        //COVID
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt75_5")).click();
+        esperar(500);
+        //Ninguno de los anteriores
+        driver.findElement(By.cssSelector("div#frmContratos\\:tablaRegistros\\:j_idt75")).click();
+        driver.findElement(By.cssSelector("li#frmContratos\\:tablaRegistros\\:j_idt75_0")).click();
+    }
+
+    private void filtrarCodigoHabilitacion () throws InterruptedException {
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt78")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt78")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt79")).sendKeys("901835598001");
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt79")).clear();
+    }
+
+    private void filtrarNombreSede () throws InterruptedException {
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt80")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt80")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt81")).sendKeys("UNLAB BARRIO ORTIZ");
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(500);
+    }
+
+    private void filtrarFechaHoraCrea () throws InterruptedException {
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt82")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt82")).click();
+        esperar(500);
     }
 }

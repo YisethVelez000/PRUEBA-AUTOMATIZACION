@@ -12,7 +12,7 @@ public class ingresoPruebas {
 
     public void iniciarSesion(){
         driver.get("http://10.250.2.35:8080/savia/login.faces");
-        driver.manage().window().fullscreen();
+        driver.manage().window().maximize();
         esperar(500);
         driver.findElement(By.cssSelector("input#login\\:usuario")).sendKeys("apuertve");
         esperar(500);
