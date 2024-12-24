@@ -76,7 +76,7 @@ public class listar {
         filtrarFechaHoraCrea();
         esperar(500);
 
-        driver.quit();
+        verDetalleContrato();
 
     }
 
@@ -193,6 +193,11 @@ public class listar {
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt82")).click();
         esperar(500);
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt82")).click();
+        esperar(500);
+    }
+
+    private void verDetalleContrato() throws InterruptedException {
+        driver.findElement(By.cssSelector("button#frmContratos\\:tablaRegistros\\:0\\:j_idt87")).click();
         esperar(500);
     }
 }
