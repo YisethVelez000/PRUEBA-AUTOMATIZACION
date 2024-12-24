@@ -86,7 +86,7 @@ public class listar {
     }
 
     private void filtrarContrato() throws InterruptedException{
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).sendKeys("prueba1");
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).sendKeys("072-2016");
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(5000);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).clear();
@@ -133,7 +133,7 @@ public class listar {
     }
 
     private void filtrarNombre () throws InterruptedException {
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).sendKeys("prueba1");
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).sendKeys("PHARMASYS UT");
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(500);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).clear();
