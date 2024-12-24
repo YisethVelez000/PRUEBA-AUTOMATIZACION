@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 
 public class crearContratos
 {
@@ -45,18 +46,37 @@ public class crearContratos
         driver.get("http://10.250.2.35:8080/savia/contratacion/contratos.faces");
         esperar(500);
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt52")).click();
+        esperar(1000);
+        contratoContributivo();
     }
 
-    private void contratoContributivo() {
-
+    private void contratoContributivo() throws InterruptedException {
+        contrato();
+        afiliados();
+        fechaIncial();
     }
 
-    private void contratoSubsidiado() {
-
+    private void contratoSubsidiado() throws InterruptedException {
+        contrato();
+        afiliados();
     }
 
     private void contrato() throws  InterruptedException{
+        //Generamos un número random para el contrato
+        int numeroContrato = (int) (Math.random() * 1000000 + 1);
+        driver.findElement(By.id("input#frmCrear\\:contrato")).sendKeys(String.valueOf(numeroContrato));
 
+    }
+
+    private void afiliados () throws InterruptedException{
+        long numeroAfiliados = (long) (Math.random() * 1000000000 + 1);
+        driver.findElement(By.cssSelector("input#frmCrear\\:numAfiliados")).sendKeys(String.valueOf(numeroAfiliados));
+    }
+
+    private void fechaIncial () throws InterruptedException {
+        //Traemos la fecha actual
+        LocalDate fechaInicio = LocalDate.now();
+        driver.findElement(By.cssSelector("input#frmCrear\\:fechaInicio_input")).sendKeys(String.valueOf(fechaInicio));
     }
 
 }
