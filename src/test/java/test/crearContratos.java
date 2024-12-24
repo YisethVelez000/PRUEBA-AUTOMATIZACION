@@ -64,7 +64,7 @@ public class crearContratos
     private void contrato() throws  InterruptedException{
         //Generamos un número random para el contrato
         int numeroContrato = (int) (Math.random() * 1000000 + 1);
-        driver.findElement(By.id("input#frmCrear\\:contrato")).sendKeys(String.valueOf(numeroContrato));
+        driver.findElement(By.cssSelector("input#frmCrear\\:contrato")).sendKeys(String.valueOf(numeroContrato));
 
     }
 
