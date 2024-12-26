@@ -81,7 +81,7 @@ public class listar {
     }
 
     private void contratacion() throws InterruptedException {
-        driver.get("http://10.250.2.35:8080/savia/contratacion/contratos.faces");
+        driver.get("http://10.250.3.66:8080/savia/contratacion/contratos.faces");
         driver.manage().window().maximize();
     }
 
