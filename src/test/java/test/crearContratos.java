@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.sql.Connection;
@@ -62,6 +63,8 @@ public class crearContratos
         diasLimitePago();
         objetoContrato();
         regimenContributivo();
+        prestador();
+        sede();
 
     }
 
@@ -77,6 +80,7 @@ public class crearContratos
         diasLimitePago();
         objetoContrato();
         regimenSubsidiado();
+        prestador();
     }
 
     private void contrato() throws  InterruptedException{
@@ -143,6 +147,51 @@ public class crearContratos
     private void regimenContributivo() throws InterruptedException {
         driver.findElement(By.cssSelector("div#frmCrear\\:regimenContrato")).click();
         driver.findElement(By.cssSelector("li#frmCrear\\:regimenContrato_2")).click();
+    }
+
+    private void prestador() throws InterruptedException {
+        String query = "SELECT c.cnt_prestadores_id,p.numero_documento FROM cnt_contratos c JOIN cnt_prestadores p ON c.cnt_prestadores_id = p.id ORDER BY RAND() LIMIT 1";
+        String numeroDocumento = "";
+        try {
+            java.sql.Statement st = conexion.createStatement();
+            java.sql.ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()) {
+                numeroDocumento = resultSet.getString("numero_documento");
+                System.out.println("Numero de documento: " + numeroDocumento);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+
+        driver.findElement(By.cssSelector("button#frmCrear\\:botonConsultarPrestador")).click();
+        esperar(900);
+
+        // Enviar el número de documento
+        driver.findElement(By.cssSelector("input#frmPrestadorLista\\:tablaRegistrosPrestador\\:j_idt1076"));
+        driver.findElement(By.cssSelector("input#frmPrestadorLista\\:tablaRegistrosPrestador\\:j_idt1076")).clear();
+        driver.findElement(By.cssSelector("input#frmPrestadorLista\\:tablaRegistrosPrestador\\:j_idt1076")).sendKeys(numeroDocumento);
+
+        driver.findElement(By.cssSelector("button#frmPrestadorLista\\:j_idt1065")).click();
+        esperar(500);
+
+        // Encontrar la primera fila y hacer clic
+        WebElement primerElemento = driver.findElement(By.cssSelector("tr.ui-widget-content.ui-datatable-even.ui-datatable-selectable"));
+        System.out.println(primerElemento.getText() + "  prestadorrr");
+        primerElemento.click();
+    }
+
+    private void sede() throws InterruptedException{
+        driver.findElement(By.cssSelector("button#frmCrear\\:j_idt225")).click();
+        driver.findElement(By.name("frmSelPrestadorSedesGenerico:j_idt1040")).click();
+        esperar(500);
+//        driver.findElement(By.cssSelector("button#frmSelPrestadorSedesGenerico\\:j_idt1040")).click();
+        esperar(500);
+
+        // Seleccionar la primera sede
+        WebElement primeraSede = driver.findElement(By.cssSelector("tr.ui-widget-content.ui-datatable-even.ui-datatable-selectable"));
+        System.out.println(primeraSede.getText()+ "sede");
+        primeraSede.click();
+
     }
 
 }
