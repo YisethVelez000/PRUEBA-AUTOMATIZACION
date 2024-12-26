@@ -232,11 +232,27 @@ public class listar {
     }
 
     private void filtrarNombreSede () throws InterruptedException {
+        String query = "SELECT c.cnt_prestadores_id, p.nombre from cnt_contratos c join cnt_prestador_sedes p on c.cnt_prestadores_id = p.id ORDER BY RAND() LIMIT 1";
+        String nombreSede = "";
+        try {
+            java.sql.Statement st = conexion.createStatement();
+            java.sql.ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()){
+                nombreSede = resultSet.getString("nombre");
+                System.out.println("Nombre Sede: " + nombreSede);
+            }
+        }catch (Exception e){
+            System.err.println("Error al ejecutar la consulta nit: " + e.getMessage());
+
+        }
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt80")).click();
         esperar(500);
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt80")).click();
         esperar(500);
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt81")).sendKeys("UNLAB BARRIO ORTIZ");
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt81")).sendKeys(nombreSede);
+        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
+        esperar(500);
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt81")).clear();
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(500);
     }
