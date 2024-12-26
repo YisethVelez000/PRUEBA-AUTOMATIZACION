@@ -207,11 +207,25 @@ public class listar {
     }
 
     private void filtrarCodigoHabilitacion () throws InterruptedException {
+        String query = "SELECT c.cnt_prestadores_id, p.codigo_habilitacion from cnt_contratos c join cnt_prestador_sedes p on c.cnt_prestadores_id = p.id ORDER BY RAND() LIMIT 1";
+        String codigoHabilitacion = "";
+        try {
+            java.sql.Statement st = conexion.createStatement();
+            java.sql.ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()){
+                codigoHabilitacion = resultSet.getString("codigo_habilitacion");
+                System.out.println("Codigo Habilitacion: " + codigoHabilitacion);
+            }
+        }catch (Exception e){
+            System.err.println("Error al ejecutar la consulta nit: " + e.getMessage());
+
+        }
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt78")).click();
         esperar(500);
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt78")).click();
         esperar(500);
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt79")).sendKeys("901835598001");
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt79")).sendKeys(codigoHabilitacion);
+        esperar(500);
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(500);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt79")).clear();
