@@ -18,6 +18,7 @@ public class crearContratos
     private ingresoPruebas ingreso;
     private Connection conexion;
     private long valorContrato;
+    private long numeroAfiliados;
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\apuertav\\IdeaProjects\\pruebaAutomatizacion\\src\\test\\resources\\chromedriver.exe");
@@ -81,6 +82,7 @@ public class crearContratos
         objetoContrato();
         regimenSubsidiado();
         prestador();
+        sede();
     }
 
     private void contrato() throws  InterruptedException{
@@ -91,7 +93,7 @@ public class crearContratos
     }
 
     private void afiliados () throws InterruptedException{
-        long numeroAfiliados = (long) (Math.random() * 1000000000 + 1);
+         numeroAfiliados = (long) (Math.random() * 1000000000 + 1);
 //        driver.findElement(By.cssSelector("input#Crear\\:numAfiliados")).sendKeys(String.valueOf(numeroAfiliados));
         driver.findElement(By.id("frmCrear:numAfiliados_input")).sendKeys(String.valueOf(numeroAfiliados));
     }
@@ -182,15 +184,15 @@ public class crearContratos
 
     private void sede() throws InterruptedException{
         driver.findElement(By.cssSelector("button#frmCrear\\:j_idt225")).click();
-        driver.findElement(By.name("frmSelPrestadorSedesGenerico:j_idt1040")).click();
-        esperar(500);
-//        driver.findElement(By.cssSelector("button#frmSelPrestadorSedesGenerico\\:j_idt1040")).click();
         esperar(500);
 
         // Seleccionar la primera sede
         WebElement primeraSede = driver.findElement(By.cssSelector("tr.ui-widget-content.ui-datatable-even.ui-datatable-selectable"));
-        System.out.println(primeraSede.getText()+ "sede");
+        System.out.println(primeraSede.getText()+ " sede");
         primeraSede.click();
+
+//        driver.findElement(By.cssSelector("input#frmCrearContratoSede\\:nroAfiliados_input")).sendKeys(String.valueOf(numeroAfiliados));
+        driver.findElement(By.id("frmCrearContratoSede:nroAfiliados_input")).sendKeys(String.valueOf(numeroAfiliados));
 
     }
 
