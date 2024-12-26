@@ -86,7 +86,20 @@ public class listar {
     }
 
     private void filtrarContrato() throws InterruptedException{
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).sendKeys("072-2016");
+        //Hacemos una consulta de Myssql para obtener un número de contrato
+        String query = "SELECT contrato FROM cnt_contratos ORDER BY RAND() LIMIT 1";
+        String contrato = "";
+        try {
+            java.sql.Statement st = conexion.createStatement();
+            java.sql.ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()){
+                contrato = resultSet.getString("contrato");
+            }
+        }catch (Exception e){
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+
+        }
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).sendKeys(contrato);
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(5000);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt63")).clear();
@@ -121,7 +134,20 @@ public class listar {
     }
 
     private void filtrarNit () throws InterruptedException {
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).sendKeys("800082394");
+        String query = "SELECT c.cnt_prestadores_id,p.numero_documento FROM cnt_contratos c JOIN cnt_prestadores p ON c.cnt_prestadores_id = p.id ORDER BY RAND() LIMIT 1";
+        String nit = "";
+        try {
+            java.sql.Statement st = conexion.createStatement();
+            java.sql.ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()){
+                nit = resultSet.getString("numero_documento");
+                System.out.println("NIT: " + nit);
+            }
+        }catch (Exception e){
+            System.err.println("Error al ejecutar la consulta nit: " + e.getMessage());
+
+        }
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).sendKeys(nit);
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(800);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt71")).clear();
@@ -133,9 +159,21 @@ public class listar {
     }
 
     private void filtrarNombre () throws InterruptedException {
-        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).sendKeys("PHARMASYS UT");
+        String query = "SELECT c.cnt_prestadores_id,p.razon_social, p.razon_social FROM cnt_contratos c JOIN cnt_prestadores p ON c.cnt_prestadores_id = p.id ORDER BY RAND() LIMIT 1";
+        String nombre = "";
+        try {
+            java.sql.Statement st = conexion.createStatement();
+            java.sql.ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()){
+                nombre = resultSet.getString("razon_social");
+                System.out.println("Nombre: " + nombre);
+            }
+        }catch (Exception e){
+            System.err.println("Error al ejecutar la consulta nombre: " + e.getMessage());
+        }
+        driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).sendKeys(nombre);
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
-        esperar(500);
+        esperar(800);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt73")).clear();
         esperar(500);
         driver.findElement(By.cssSelector("th#frmContratos\\:tablaRegistros\\:j_idt72")).click();
