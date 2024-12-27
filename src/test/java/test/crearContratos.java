@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.util.List;
 
 public class crearContratos
 {
@@ -316,9 +317,26 @@ public class crearContratos
 
         driver.findElement(By.cssSelector("textarea#frmCrearContratoSede\\:observacion")).sendKeys("Prestar servicios integrales de salud de baja complejidad a los afiliados del Régimen subsidiado, contributivo y en estado de portabilidad y movilidad de Savia Salud EPS, del Municipio de Angostura y que se encuentren debidamente registrados en la base de datos que dispone la EPS y con derecho a los servicios contenidos en el Plan de Beneficios de Salud y la atención en todos los servicios contratados como Prestador Primario de Salud.");
 
-        driver.findElement(By.cssSelector("button#frmCrearContratoSede\\:j_idt441")).click();
+//        driver.findElement(By.cssSelector("button#frmCrearContratoSede\\:j_idt441")).click();
 
+        driver.findElement(By.cssSelector("div#frmCrearContratoSede\\:municipioCobertura")).click();
+
+        int cantidadMunicipios = (int) (Math.random() * 10 + 1);
+        System.out.println("Cantidad de municipios: " + cantidadMunicipios);
+        List <WebElement> municipios = driver.findElements(By.className("ui-selectcheckboxmenu-item"));
+
+        for (int i = 0; i < cantidadMunicipios; i++) {
+            int municipio = (int) (Math.random() * 10 + 1);
+            System.out.println("Municipio: " + municipio);
+
+            municipios.get(municipio).getText();
+            municipios.get(municipio).click();
+
+        }
+
+        driver.findElement(By.cssSelector("button#frmCrearContratoSede\\:j_idt441")).click();
         driver.findElement(By.cssSelector("button#frmCrear\\:j_idt242")).click();
+
     }
 
 }
