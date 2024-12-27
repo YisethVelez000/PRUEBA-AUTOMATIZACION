@@ -17,7 +17,7 @@ public class listar {
 
     @BeforeEach
     public void setUp(){
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\apuertav\\IdeaProjects\\pruebaAutomatizacion\\src\\test\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\apuertav\\Downloads\\pruebaAutomatizacion\\src\\test\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
         ingreso = new ingresoPruebas(driver);
 
@@ -253,8 +253,7 @@ public class listar {
         driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
         esperar(500);
         driver.findElement(By.cssSelector("input#frmContratos\\:tablaRegistros\\:j_idt81")).clear();
-        driver.findElement(By.cssSelector("button#frmContratos\\:j_idt51")).click();
-        esperar(500);
+
     }
 
     private void filtrarFechaHoraCrea () throws InterruptedException {
