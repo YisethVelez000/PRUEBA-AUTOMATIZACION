@@ -77,6 +77,10 @@ public class listar {
         esperar(500);
 
         verDetalleContrato();
+        esperar(500);
+
+        autorizarGestion();
+        esperar(500);
 
     }
 
@@ -264,7 +268,26 @@ public class listar {
     }
 
     private void verDetalleContrato() throws InterruptedException {
-        driver.findElement(By.cssSelector("button#frmContratos\\:tablaRegistros\\:0\\:j_idt87")).click();
+        // Generamos un nùmero aleatorio entre 0 y 29
+        int index = (int) (Math.random() * 29 + 0);
+        driver.findElement(By.cssSelector("button#frmContratos\\:tablaRegistros\\:"+index+"\\:j_idt87")).click();
         esperar(500);
+        driver.findElement(By.cssSelector("button#frmVer\\:j_idt185")).click();
+
     }
+
+    private void autorizarGestion () throws InterruptedException {
+        // Generamos un nùmero aleatorio entre 0 y 29
+        int index = (int) (Math.random() * 29 + 0);
+        driver.findElement(By.cssSelector("button#frmContratos\\:tablaRegistros\\:"+index+"\\:j_idt91")).click();
+
+        int decision = (int) (Math.random() * 2 + 1);
+        if (decision == 1){
+            driver.findElement(By.cssSelector("button#frmContratos\\:j_idt122")).click();
+        }else{
+            driver.findElement(By.cssSelector("button#frmContratos\\:j_idt123")).click();
+
+        }
+    }
+
 }

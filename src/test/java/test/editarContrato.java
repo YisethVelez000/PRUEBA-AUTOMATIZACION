@@ -52,7 +52,9 @@ public class editarContrato
         ingreso.iniciarSesion();
         contratacion();
         esperar(2000);
-        driver.findElement(By.cssSelector("button#frmContratos\\:tablaRegistros\\:0\\:j_idt88")).click();
+        // Seleccionar un contrato aleatorio de la lista
+        int index = (int) (Math.random() * 30 + 1);
+        driver.findElement(By.cssSelector("button#frmContratos\\:tablaRegistros\\:"+index+"\\:j_idt88")).click();
         esperar(2000);
         numeroAfiliados();
         esperar(500);
@@ -69,6 +71,8 @@ public class editarContrato
         diasLimite();
         esperar(500);
         regimen();
+        esperar(500);
+        guardarCambios();
 
     }
 
@@ -160,6 +164,11 @@ public class editarContrato
          int index = (int) (Math.random() * regimenes.size() + 1);
          System.out.println("Regimen seleccionado: " + index);
             driver.findElement(By.cssSelector("li#frmEditar\\:regimenContrato_"+index)).click();
+    }
+
+    private void guardarCambios() throws InterruptedException {
+        driver.findElement(By.cssSelector("button#frmEditar\\:j_idt302")).click();
+        esperar(2000);
     }
 
 
